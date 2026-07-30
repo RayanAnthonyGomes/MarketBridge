@@ -1,0 +1,118 @@
+.product-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-card .product-image {
+  position: relative;
+}
+
+.product-card .discount-badge {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  background: var(--error);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  z-index: 2;
+}
+
+.product-card .ai-badge {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  background: var(--gradient-ai);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  z-index: 2;
+}
+
+.product-card .wishlist-btn {
+  position: absolute;
+  bottom: var(--space-3);
+  right: var(--space-3);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all var(--transition-smooth);
+  z-index: 2;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.product-card:hover .wishlist-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-card .wishlist-btn.active {
+  opacity: 1;
+  transform: translateY(0);
+  background: var(--error-bg);
+  border-color: var(--error);
+}
+
+.product-card .wishlist-btn:hover {
+  transform: scale(1.1);
+}
+
+.product-card .product-category {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.product-card .product-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+
+.product-card .star-rating {
+  margin: 4px 0;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  margin-top: var(--space-3);
+  background: var(--primary);
+  color: white;
+  border: none;
+  transition: all var(--transition-fast);
+}
+
+.add-to-cart-btn:hover {
+  background: var(--primary-dark);
+  box-shadow: var(--shadow-glow);
+}
+
+.add-to-cart-btn.added {
+  background: var(--success);
+}
+
+.add-to-cart-btn:active {
+  transform: scale(0.97);
+}

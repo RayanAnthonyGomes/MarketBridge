@@ -1,0 +1,439 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--navbar-bg);
+  backdrop-filter: var(--navbar-blur);
+  -webkit-backdrop-filter: var(--navbar-blur);
+  border-bottom: 1px solid var(--border);
+  height: var(--navbar-height);
+}
+
+.navbar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.brand-text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.nav-link {
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background-color: var(--surface-elevated);
+}
+
+.nav-link.active {
+  color: var(--primary);
+  background-color: var(--primary-bg);
+}
+
+/* Search */
+.navbar-search {
+  flex: 1;
+  max-width: 480px;
+  position: relative;
+}
+
+.navbar-search .search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.navbar-search .search-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 14px 0 42px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  transition: all var(--transition-base);
+}
+
+.navbar-search .search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.navbar-search .search-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Right Actions */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
+.theme-toggle {
+  position: relative;
+}
+
+.theme-toggle svg {
+  transition: transform var(--transition-smooth);
+}
+
+.theme-toggle:hover svg {
+  transform: rotate(30deg);
+}
+
+/* Badge Count */
+.badge-count {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--radius-full);
+  background: var(--error);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cart-btn {
+  position: relative;
+}
+
+/* User */
+.user-wrapper, .notif-wrapper {
+  position: relative;
+}
+
+.user-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 8px 4px 4px;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--text-primary);
+  transition: background var(--transition-fast);
+  cursor: pointer;
+  border: none;
+}
+
+.user-trigger:hover {
+  background: var(--surface-elevated);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.user-avatar.lg {
+  width: 44px;
+  height: 44px;
+  font-size: 0.9rem;
+}
+
+.user-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Dropdowns */
+.dropdown-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  animation: dropdownFadeIn var(--transition-smooth) forwards;
+  z-index: 200;
+  overflow: hidden;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.user-dropdown {
+  width: 260px;
+  padding: var(--space-2);
+}
+
+.dropdown-user-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: var(--border);
+  margin: var(--space-1) 0;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background var(--transition-fast);
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-item:hover {
+  background: var(--surface-elevated);
+}
+
+.dropdown-item.danger {
+  color: var(--error);
+}
+
+.dropdown-item.danger:hover {
+  background: var(--error-bg);
+}
+
+/* Notification Dropdown */
+.notif-dropdown {
+  width: 360px;
+  max-height: 440px;
+}
+
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.dropdown-header h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.dropdown-list {
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.dropdown-empty {
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.notif-item {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition-fast);
+  cursor: pointer;
+}
+
+.notif-item:last-child {
+  border-bottom: none;
+}
+
+.notif-item:hover {
+  background: var(--surface-elevated);
+}
+
+.notif-item.unread {
+  background: var(--primary-bg);
+}
+
+.notif-item.unread:hover {
+  background: var(--primary-bg);
+  filter: brightness(0.97);
+}
+
+.notif-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.notif-message {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.notif-time {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  display: block;
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+  display: none;
+}
+
+.mobile-menu {
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  background: var(--surface);
+}
+
+.mobile-search {
+  position: relative;
+  margin-bottom: var(--space-2);
+}
+
+.mobile-search .search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.mobile-search .search-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 14px 0 42px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+}
+
+.mobile-link {
+  padding: 10px var(--space-3);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.mobile-link:hover, .mobile-link.active {
+  color: var(--primary);
+  background: var(--primary-bg);
+}
+
+@media (max-width: 1023px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+  .navbar-inner {
+    padding: 0 var(--space-4);
+  }
+}
+
+@media (max-width: 639px) {
+  .brand-text {
+    display: none;
+  }
+  .navbar-inner {
+    gap: var(--space-2);
+  }
+  .notif-dropdown {
+    width: calc(100vw - 32px);
+    right: -60px;
+  }
+}
