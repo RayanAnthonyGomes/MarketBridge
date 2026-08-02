@@ -1,13 +1,19 @@
+/* ═══════════════════════════════════════════
+   PRODUCT LIST PAGE
+   ═══════════════════════════════════════════ */
+
 .product-list-page {
   padding: var(--space-6) 0 var(--space-10);
 }
 
+/* ── Page Header ── */
 .plp-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: var(--space-5);
   gap: var(--space-4);
+  animation: revealUp 360ms var(--ease-out) both;
 }
 
 .plp-controls {
@@ -16,125 +22,216 @@
   gap: var(--space-3);
 }
 
+/* View toggle — pill group */
 .view-toggle {
   display: flex;
+  background: var(--surface-elevated);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
+  border-radius: var(--radius-full);
+  padding: 3px;
+  gap: 2px;
 }
 
 .view-toggle .btn-icon {
-  border-radius: 0;
-  width: 36px;
-  height: 36px;
+  border-radius: var(--radius-full);
+  width: 32px;
+  height: 32px;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform 160ms var(--ease-out);
 }
+
+.view-toggle .btn-icon:active { transform: scale(0.9); }
 
 .view-toggle .btn-icon.active {
-  background: var(--primary-bg);
+  background: var(--surface);
   color: var(--primary);
+  box-shadow: var(--shadow-xs);
 }
 
-/* Active Filters */
+/* Sort select — styled */
+.plp-controls select {
+  height: 38px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0 14px;
+  font-size: 0.8125rem;
+  font-family: var(--font-primary);
+  background: var(--surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-weight: 500;
+  transition: border-color var(--transition-fast);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%239090B8' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+.plp-controls select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+/* ── Active Filters ── */
 .active-filters {
   display: flex;
   align-items: center;
   gap: var(--space-2);
   margin-bottom: var(--space-5);
   flex-wrap: wrap;
+  animation: revealUp 360ms var(--ease-out) 60ms both;
 }
 
+/* Filter chip — pill with origin-aware dismiss */
 .filter-chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 12px;
+  padding: 5px 10px 5px 14px;
   background: var(--primary-bg);
   color: var(--primary);
+  border: 1px solid rgba(91, 82, 240, 0.2);
   border-radius: var(--radius-full);
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
 }
 
 .filter-chip button {
-  background: none;
+  background: rgba(91, 82, 240, 0.12);
   border: none;
-  color: inherit;
+  color: var(--primary);
   cursor: pointer;
   display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2px;
   border-radius: var(--radius-full);
+  width: 18px;
+  height: 18px;
+  transition: background var(--transition-fast), transform 160ms var(--ease-out);
 }
 
-.filter-chip button:hover {
-  background: rgba(0,0,0,0.1);
-}
+.filter-chip button:hover { background: rgba(91, 82, 240, 0.2); }
+.filter-chip button:active { transform: scale(0.88); }
 
-/* Layout */
+/* ── Layout ── */
 .plp-layout {
   display: grid;
   grid-template-columns: 240px 1fr;
   gap: var(--space-6);
+  align-items: start;
 }
 
+/* Filter sidebar — floating card */
 .plp-sidebar {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-4);
+  position: sticky;
+  top: calc(var(--navbar-height) + 78px);
+  animation: revealUp 380ms var(--ease-out) 80ms both;
+}
+
+.filter-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), var(--shadow-xs);
+}
+
+[data-theme="dark"] .filter-section {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), var(--shadow-xs);
 }
 
 .filter-section h4 {
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   margin-bottom: var(--space-3);
-  color: var(--text-primary);
+  color: var(--text-muted);
 }
 
 .filter-options {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 
+/* Filter options — pill-button style (radio hidden) */
 .filter-option {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  padding: 8px var(--space-3);
+  padding: 8px 10px;
   border-radius: var(--radius-md);
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   cursor: pointer;
   color: var(--text-secondary);
-  transition: all var(--transition-fast);
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    transform 180ms var(--ease-out);
+  font-weight: 500;
 }
 
-.filter-option:hover {
-  background: var(--surface-elevated);
-  color: var(--text-primary);
+.filter-option input[type="radio"] { display: none; }
+
+@media (hover: hover) and (pointer: fine) {
+  .filter-option:hover {
+    background: var(--surface-elevated);
+    color: var(--text-primary);
+    transform: translateX(2px);
+  }
 }
+
+.filter-option:active { transform: scale(0.97); }
 
 .filter-option.active {
   background: var(--primary-bg);
   color: var(--primary);
-  font-weight: 500;
-}
-
-.filter-option input[type="radio"] {
-  display: none;
+  font-weight: 600;
 }
 
 .filter-count {
   margin-left: auto;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
+  font-family: var(--font-mono);
 }
 
+/* Price range inputs */
 .price-range {
   display: flex;
   align-items: center;
   gap: var(--space-2);
 }
 
-/* List View */
+.price-range .input {
+  height: 36px;
+  font-size: 0.8125rem;
+  border-radius: var(--radius-md);
+}
+
+/* ── Main Grid ── */
+.plp-main {
+  animation: revealUp 380ms var(--ease-out) 120ms both;
+}
+
+/* Product grid — auto-fill with improved card sizing */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-5);
+}
+
+/* List view */
 .product-grid.list-view {
   grid-template-columns: 1fr;
 }
@@ -144,59 +241,75 @@
 }
 
 .product-grid.list-view .product-card .product-image {
-  width: 200px;
+  width: 180px;
   aspect-ratio: auto;
-  height: 160px;
+  height: 140px;
   flex-shrink: 0;
 }
 
-/* Empty State */
+/* ── Empty State — beautifully composed ── */
 .empty-state {
   text-align: center;
   padding: var(--space-12) var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+[data-theme="dark"] .empty-state {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
 }
 
 .empty-icon {
-  font-size: 3rem;
-  margin-bottom: var(--space-4);
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-5);
+  color: var(--text-muted);
 }
 
 .empty-state h3 {
   margin-bottom: var(--space-2);
+  letter-spacing: -0.015em;
 }
 
 .empty-state p {
   margin-bottom: var(--space-5);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
 }
 
-/* Responsive */
+/* ── Responsive ── */
 @media (max-width: 1023px) {
   .plp-layout {
     grid-template-columns: 1fr;
   }
+
   .plp-sidebar {
+    position: static;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: var(--space-4);
-    padding: var(--space-4);
-    background: var(--surface);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border);
+    gap: var(--space-3);
   }
+
   .filter-section {
     min-width: 200px;
+    flex: 1;
   }
 }
 
 @media (max-width: 639px) {
-  .plp-header {
-    flex-direction: column;
-  }
-  .plp-controls {
-    width: 100%;
-    flex-wrap: wrap;
-  }
-  .plp-controls select {
-    flex: 1;
+  .plp-header { flex-direction: column; }
+  .plp-controls { width: 100%; flex-wrap: wrap; }
+  .plp-controls select { flex: 1; }
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--space-3);
   }
 }

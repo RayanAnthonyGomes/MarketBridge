@@ -1,23 +1,25 @@
+/* ProductCard — supplements index.css .product-card base */
+
 .product-card {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
-.product-card .product-image {
-  position: relative;
-}
-
+/* Badges — pill shape, not rounded-md */
 .product-card .discount-badge {
   position: absolute;
   top: var(--space-3);
   left: var(--space-3);
   background: var(--error);
   color: white;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  padding: 3px 8px;
-  border-radius: var(--radius-sm);
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
   z-index: 2;
+  box-shadow: 0 2px 8px rgba(229, 72, 77, 0.4);
+  letter-spacing: 0.02em;
 }
 
 .product-card .ai-badge {
@@ -26,63 +28,79 @@
   right: var(--space-3);
   background: var(--gradient-ai);
   color: white;
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-size: 0.63rem;
+  font-weight: 700;
   padding: 3px 8px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   gap: 3px;
   z-index: 2;
+  box-shadow: 0 2px 10px var(--primary-glow);
+  letter-spacing: 0.02em;
 }
 
+/* Wishlist — reveal on hover with smooth spring */
 .product-card .wishlist-btn {
   position: absolute;
   bottom: var(--space-3);
   right: var(--space-3);
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: var(--radius-full);
   background: var(--surface);
   border: 1px solid var(--border);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), var(--shadow-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   opacity: 0;
-  transform: translateY(4px);
-  transition: all var(--transition-smooth);
+  transform: translateY(6px) scale(0.9);
+  transition:
+    opacity 220ms var(--ease-out),
+    transform 280ms var(--ease-spring),
+    background var(--transition-fast),
+    border-color var(--transition-fast);
   z-index: 2;
   color: var(--text-secondary);
-  box-shadow: var(--shadow-sm);
 }
 
-.product-card:hover .wishlist-btn {
-  opacity: 1;
-  transform: translateY(0);
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover .wishlist-btn {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .product-card .wishlist-btn:hover {
+    transform: scale(1.12);
+  }
 }
 
 .product-card .wishlist-btn.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
   background: var(--error-bg);
   border-color: var(--error);
+  color: var(--error);
 }
 
-.product-card .wishlist-btn:hover {
-  transform: scale(1.1);
+[data-theme="dark"] .product-card .wishlist-btn {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), var(--shadow-sm);
 }
 
+/* Category label */
 .product-card .product-category {
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-size: 0.67rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.09em;
   color: var(--text-muted);
-  margin-bottom: 4px;
+  margin-bottom: 5px;
   display: block;
 }
 
+/* Price row */
 .product-card .product-price-row {
   display: flex;
   align-items: baseline;
@@ -91,28 +109,36 @@
   padding-top: var(--space-2);
 }
 
-.product-card .star-rating {
-  margin: 4px 0;
-}
+.product-card .star-rating { margin: 5px 0; }
 
+/* Add to cart — primary gradient pill */
 .add-to-cart-btn {
   width: 100%;
   margin-top: var(--space-3);
-  background: var(--primary);
+  background: var(--gradient-primary);
   color: white;
   border: none;
-  transition: all var(--transition-fast);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 10px var(--primary-glow);
+  transition:
+    transform 160ms var(--ease-out),
+    box-shadow 220ms var(--ease-out);
 }
 
-.add-to-cart-btn:hover {
-  background: var(--primary-dark);
-  box-shadow: var(--shadow-glow);
+@media (hover: hover) and (pointer: fine) {
+  .add-to-cart-btn:hover {
+    box-shadow: 0 4px 20px var(--primary-glow);
+    transform: translateY(-1px);
+  }
 }
 
+.add-to-cart-btn:active { transform: scale(0.97); }
+
+/* Success state — smooth transition */
 .add-to-cart-btn.added {
   background: var(--success);
-}
-
-.add-to-cart-btn:active {
-  transform: scale(0.97);
+  box-shadow: 0 2px 10px rgba(15, 168, 119, 0.35);
 }

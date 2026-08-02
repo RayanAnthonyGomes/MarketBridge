@@ -17,9 +17,7 @@
   padding: var(--space-5);
 }
 
-.stat-card:hover {
-  transform: none;
-}
+.stat-card:hover { transform: none; }
 
 .stat-icon {
   width: 48px;
@@ -32,11 +30,12 @@
 }
 
 .stat-value {
-  font-size: 1.5rem;
+  font-size: 1.625rem;
   font-weight: 800;
   font-family: var(--font-display);
   color: var(--text-primary);
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
 .stat-label {
@@ -168,7 +167,7 @@
 .risk-fill {
   height: 100%;
   border-radius: var(--radius-full);
-  transition: width var(--transition-smooth);
+  transition: width 360ms var(--ease-out);
 }
 
 /* Responsive */
