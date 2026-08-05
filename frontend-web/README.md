@@ -1,16 +1,119 @@
-# React + Vite
+# MarketBridge Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A React + Vite storefront for the MarketBridge app, with marketplace pages and role-based dashboards for buyers, sellers, and admins.
 
-Currently, two official plugins are available:
+## Quick start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Install dependencies:
 
-## React Compiler
+```bash
+cd frontend-web
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Run the development server:
 
-## Expanding the Oxlint configuration
+```bash
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Open the app in your browser at:
+
+```bash
+http://localhost:5173
+```
+
+Build for production:
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+Run linting:
+
+```bash
+npm run lint
+```
+
+## What’s included
+
+- React 19 with Vite
+- React Router DOM for client-side routing
+- Role-based protected routes for buyer, seller, and admin dashboards
+- Cart and theme context providers
+- Example product search, product detail, checkout, and login pages
+- Recharts analytics support
+- Lucide icons for UI controls
+
+## App routes
+
+### Public routes
+
+- `/` — Home marketplace
+- `/products` — Product grid and filtering
+- `/products/:id` — Product details page
+- `/cart` — Shopping cart
+- `/login` — Authentication page
+
+### Authenticated routes
+
+- `/checkout` — Checkout page
+- `/settings` — Settings view
+- `/orders/:id` — Order details
+
+### Role-based dashboards
+
+Buyer routes (buyer access only):
+
+- `/dashboard/buyer`
+- `/dashboard/buyer/orders`
+- `/dashboard/buyer/wishlist`
+- `/dashboard/buyer/recommendations`
+
+Seller routes (seller access only):
+
+- `/dashboard/seller`
+- `/dashboard/seller/products`
+- `/dashboard/seller/orders`
+- `/dashboard/seller/analytics`
+- `/dashboard/seller/pricing`
+
+Admin routes (admin access only):
+
+- `/dashboard/admin`
+- `/dashboard/admin/moderation`
+- `/dashboard/admin/fraud`
+- `/dashboard/admin/users`
+- `/dashboard/admin/analytics`
+
+### Error route
+
+- `*` — Not found page
+
+## Project structure
+
+- `src/App.jsx` — Main route definitions and protected route handling
+- `src/main.jsx` — App entry point
+- `src/pages` — Marketplace, auth, buyer, seller, admin, and error pages
+- `src/components/layout` — Shared layout components: `Navbar`, `Sidebar`, `Footer`
+- `src/context` — Auth, cart, and theme providers
+- `src/data` — Mock product and notification data
+- `src/styles` — Global CSS styles
+
+## Notes
+
+- `BrowserRouter` is used in `src/App.jsx`.
+- The navbar is hidden on `/login` and shown elsewhere.
+- Protected dashboard routes automatically redirect unauthorized users.
+
+## Troubleshooting
+
+- If the dev server does not start, verify Node.js and npm are installed then run `npm install` again.
+- If the build fails, check the terminal for syntax or route import errors.
+- Run `npm run lint` to catch style or code issues early.
